@@ -1,0 +1,21 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"EditorConfig",
+		"Emmet",
+		"GitGutter",
+		"HTML-CSS-JS Prettify",
+		"Material Theme",
+		"Origami",
+		"Package Control",
+		"SCSS",
+		"SublimeLinter",
+		"SublimeLinter-jshint",
+		"SummitLinter",
+		"Theme - itg.flat",
+		"Themr"
+	]
+}
