@@ -1,0 +1,26 @@
+"*":
+  "exception-reporting":
+    userId: "a8954e09-2c3f-528a-3f78-2c45f51c0635"
+  welcome:
+    showOnStartup: false
+  core:
+    themes: [
+      "one-dark-ui"
+      "gruvbox"
+    ]
+  react: {}
+  editor:
+    invisibles: {}
+    fontFamily: "Menlo"
+    showIndentGuide: true
+    softWrapHangingIndent: 2
+  "atom-beautify":
+    _analyticsUserId: "73d93ec0-9716-4eb9-99ae-272d7fb9e943"
+  "meteor-helper": {}
+  linter:
+    statusIconScope: "File"
+    showErrorPanel: false
+  "linter-eslint":
+    useGlobalEslint: true
+  "save-session":
+    dataSaveFolder: "/Users/ehagerty/.atom/packages/save-session/projects"

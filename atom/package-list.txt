@@ -1,0 +1,8 @@
+atom-beautify@0.28.14
+color-picker@2.0.12
+gruvbox@1.0.5
+language-javascript-jsx@0.3.7
+linter@1.6.0
+linter-eslint@3.0.2
+react@0.12.10
+
