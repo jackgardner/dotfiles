@@ -22,5 +22,3 @@
     showErrorPanel: false
   "linter-eslint":
     useGlobalEslint: true
-  "save-session":
-    dataSaveFolder: "/Users/ehagerty/.atom/packages/save-session/projects"
