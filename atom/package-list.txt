@@ -1,8 +1,11 @@
 atom-beautify@0.28.14
+atom-material-syntax@0.2.4
 color-picker@2.0.12
+editorconfig@1.2.0
+es6-javascript@0.5.0
 gruvbox@1.0.5
-language-javascript-jsx@0.3.7
 linter@1.6.0
 linter-eslint@3.0.2
+nucleus-dark-ui@0.5.3
 react@0.12.10
 
