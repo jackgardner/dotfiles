@@ -5,13 +5,13 @@
     showOnStartup: false
   core:
     themes: [
-      "one-dark-ui"
+      "nucleus-dark-ui"
       "gruvbox"
     ]
   react: {}
   editor:
     invisibles: {}
-    fontFamily: "Menlo"
+    fontFamily: "Anonymous Pro"
     showIndentGuide: true
     softWrapHangingIndent: 2
   "atom-beautify":
