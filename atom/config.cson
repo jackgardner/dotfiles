@@ -6,7 +6,7 @@
   core:
     themes: [
       "nucleus-dark-ui"
-      "gruvbox"
+      "atom-dark-fusion-syntax"
     ]
   react: {}
   editor:
@@ -14,6 +14,9 @@
     fontFamily: "Anonymous Pro"
     showIndentGuide: true
     softWrapHangingIndent: 2
+    zoomFontWhenCtrlScrolling: true
+    fontSize: 15
+    softTabs: false
   "atom-beautify":
     _analyticsUserId: "73d93ec0-9716-4eb9-99ae-272d7fb9e943"
   "meteor-helper": {}
@@ -22,3 +25,16 @@
     showErrorPanel: false
   "linter-eslint":
     useGlobalEslint: true
+    globalNodePath: "/usr/local"
+".attribute-values.js.jsx.source":
+  editor:
+    softWrapHangingIndent: 2
+".js.jsx.react.source":
+  editor:
+    softWrapHangingIndent: 2
+".js.jsx.source":
+  editor:
+    softWrapHangingIndent: 2
+".js.source.subtlegradient":
+  editor:
+    softWrapHangingIndent: 2
