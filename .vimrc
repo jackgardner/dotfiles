@@ -1,5 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'scrooloose/nerdtree'
+
 " Make sure you use single quotes
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
@@ -9,6 +11,8 @@ Plug 'junegunn/vim-easy-align'
 
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
+Plug 'kien/ctrlp.vim'
+
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
@@ -27,10 +31,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug '~/my-prototype-plugin'
 
 Plug 'morhetz/gruvbox'
-
+Plug 'ajh17/Spacegray.vim'
 call plug#end()
+
+map <C-n> :NERDTreeToggle<CR>
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "let g:gruvbox_italic=1
-colorscheme gruvbox
+colorscheme spacegray
 set background=dark
