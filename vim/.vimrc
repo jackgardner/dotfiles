@@ -10,6 +10,7 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'bling/vim-airline'
 Plug 'aklt/plantuml-syntax'
 
+Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -140,4 +141,15 @@ map g/ <Plug>(incsearch-stay)
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
+
+let g:js_context_colors_enabled=0
+let g:js_context_colors_allow_jsx_syntax=1
+let g:js_context_colors_block_scope=1
+let g:js_context_colors_block_scope_with_let=1
+let g:js_context_colors_jsx=1
+let g:js_context_colors_debug=1
+map <leader>h :JSContextColorToggle<cr>
+
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 colorscheme default
