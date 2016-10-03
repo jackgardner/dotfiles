@@ -133,7 +133,6 @@ let g:javascript_conceal_function = "λ"
 let g:javascript_conceal_this = "@"
 let g:javascript_conceal_return = "<"
 let g:javascript_conceal_prototype = "#"
-
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
