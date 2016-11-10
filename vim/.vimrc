@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'altercation/vim-colors-solarized'
+
 " Make sure you use single quotes
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
@@ -50,25 +53,36 @@ Plug 'Wolfy87/vim-syntax-expand'
 Plug 'mxw/vim-jsx'
 call plug#end()
 map <C-N> :NERDTreeToggle<CR>
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "let g:gruvbox_italic=1
 let mapleader = " "
 
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set mouse=a
+set autoindent
 set number
+set splitright
+set splitbelow
+set visualbell
+set smarttab
 
 " Highlight searches.
 set hlsearch
 
  " Highlight the current line.
 set cursorline
-
+imap jk <Esc>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
+endif
+
+if has('mouse')
+  set mouse=a
+  if &term =~ "xterm" || &term =~ "screen"
+    autocmd VimEnter * set ttymouse=xterm2
+    autocmd FocusGained * set ttymouse=xterm2
+    autocmd BufEnter * set ttymouse=xterm2
+  endif
 endif
 
 function! s:after_colorscheme()
@@ -84,12 +98,17 @@ function! s:after_colorscheme()
   highlight SpellRare cterm=underline
 
   " Stop the cross hair ruining highlighting.
-  highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=#3a3a3a guifg=NONE
-  highlight CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=#3a3a3a guifg=NONE
+ " highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=#3a3a3a guifg=NONE
+  "highlight CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=#3a3a3a guifg=NONE
   
-  highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+  "highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
   " Make conceal look better.
   highlight Conceal cterm=bold ctermbg=236 ctermfg=190
+  highlight clear SignColumn
+  highlight GitGutterAdd ctermfg=green
+  highlight GitGutterChange ctermfg=yellow
+  highlight GitGutterDelete ctermfg=red
+  highlight GitGutterChangeDelete ctermfg=yellow
 endfunction
 
 augroup after_colorscheme
@@ -97,18 +116,21 @@ augroup after_colorscheme
   autocmd ColorScheme * call s:after_colorscheme()
 augroup END
 
+call togglebg#map("<F5>")
+
 let g:airline#extensions#tabline#enabled=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
+nnoremap <leader>` :PlugInstall<CR>
 nnoremap <silent> <leader>ti :IndentGuidesToggle<CR>
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_auto_colors=0
 
 augroup indent_guide_settings
   autocmd!
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermfg=white ctermbg=234
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermfg=white ctermbg=236
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermfg=white
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermfg=white ctermbg=black
 augroup END
 
 nmap <c-t> :tabnew<CR>
@@ -151,4 +173,8 @@ map <leader>h :JSContextColorToggle<cr>
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-colorscheme default
+
+
+syntax enable
+set background=dark
+colorscheme solarized
