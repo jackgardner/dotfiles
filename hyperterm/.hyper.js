@@ -1,7 +1,7 @@
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 14,
+    fontSize: 16,
 
     // font family with optional fallbacks
     fontFamily: 'Fira Mono, "DejaVu Sans Mono", "Lucida Console", monospace',
@@ -82,8 +82,7 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    'hyperterm-solarized-dark',
-    'hypercwd'  
+    'hyperterm-solarized-dark'
   ],
 
   // in development, you can create a directory under
