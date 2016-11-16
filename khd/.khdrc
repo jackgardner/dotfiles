@@ -20,7 +20,7 @@ cmd + alt + shift - r     : brew services restart kwm
 cmd + alt + shift - c     : kwmc config reload
 
 # Close window
-cmd + alt + shift - q     : khd -p "cmd + alt - q"
+lalt - q     : khd -p "cmd + alt - q"
 
 # Launch terminal
 lalt - return        : open -na /Applications/iTerm.app
