@@ -23,20 +23,20 @@ cmd + alt + shift - c     : kwmc config reload
 cmd + alt + shift - q     : khd -p "cmd + alt - q"
 
 # Launch terminal
-cmd + alt - return        : open -na /Applications/iTerm.app
+lalt - return        : open -na /Applications/iTerm.app
 
 # Launch launcher
-cmd + alt - d             : open /Applications/Alfred\ 3.app
+lalt - d             : open /Applications/Alfred\ 3.app
 
 # Make window fullscreen
-cmd + alt  - f            : kwmc window -z fullscreen
+lalt  - f            : kwmc window -z fullscreen
 
 # Make window floating
-cmd + alt  - space        : kwmc window -t focused
+lalt  - space        : kwmc window -t focused
 
 
 # Resize windows
-cmd + alt - r             : khd -e "mode activate resize"
+lalt - r             : khd -e "mode activate resize"
 resize - left             : kwmc window -c expand 0.05 west
 resize - down             : kwmc window -c expand 0.05 south
 resize - up               : kwmc window -c expand 0.05 north
@@ -47,20 +47,16 @@ resize + shift - up       : kwmc window -c reduce 0.05 north
 resize + shift - right    : kwmc window -c reduce 0.05 east
 
 # Give Focus To Window
-cmd + alt + shift - left  : kwmc window -f west
-cmd + alt + shift - right : kwmc window -f east
-cmd + alt + shift - down  : kwmc window -f south
-cmd + alt + shift - up    : kwmc window -f north
-cmd + alt + shift - p     : kwmc window -f prev
-cmd + alt + shift - n     : kwmc window -f next
+lalt - left  : kwmc window -f west
+lalt - right : kwmc window -f east
+lalt - down  : kwmc window -f south
+lalt - up    : kwmc window -f north
 
 # Move window
-cmd + alt + ctrl - left   : kwmc window -s west
-cmd + alt + ctrl  - down  : kwmc window -s south
-cmd + alt + ctrl  - up    : kwmc window -s north
-cmd + alt + ctrl  - right : kwmc window -s east
-cmd + alt + ctrl  - p     : kwmc window -s prev
-cmd + alt + ctrl  - n     : kwmc window -s next
+lalt + shift - left   : kwmc window -m west
+lalt + shift - down  : kwmc window -m south
+lalt + shift - right : kwmc window -m east
+lalt + shift - up   : kwmc window -m north
 
 # Give Focus To Screen
 # cmd + alt - 1            :    kwmc display -f 0
@@ -84,8 +80,8 @@ cmd + alt + ctrl  - n     : kwmc window -s next
 # ctrl + shift - x         :    kwmc window -m mark
 
 # # Move Focused Window To Space
-cmd + alt - left          : kwmc window -m space left
-cmd + alt - right         : kwmc window -m space right
+lalt + ctrl - left          : kwmc window -m space left
+lalt + ctrl - right         : kwmc window -m space right
 
 # # Move Focused Window To Screen
 # ctrl + alt - 1           :    kwmc window -m display 0
