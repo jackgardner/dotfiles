@@ -1,8 +1,11 @@
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'altercation/vim-colors-solarized'
 
+Plug 'whatyouhide/vim-gotham'
+Plug 'w0ng/vim-hybrid'
 " Make sure you use single quotes
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
@@ -52,9 +55,13 @@ Plug 'Wolfy87/vim-syntax-expand'
 " Unmanaged plugin (manually installed and updated)
 Plug 'mxw/vim-jsx'
 call plug#end()
-map <C-N> :NERDTreeToggle<CR>
 "let g:gruvbox_italic=1
 let mapleader = " "
+
+
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 
 set tabstop=2
 set shiftwidth=2
@@ -177,4 +184,7 @@ nmap ga <Plug>(EasyAlign)
 
 syntax enable
 set background=dark
-colorscheme solarized
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+
+colorscheme hybrid 
