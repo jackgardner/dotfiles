@@ -32,6 +32,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 
+
+Plug 'vim-syntastic/syntastic'
+Plug 'editorconfig/editorconfig-vim'
+
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'terryma/vim-multiple-cursors'
@@ -48,13 +52,15 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mileszs/ack.vim'
 Plug 'Wolfy87/vim-expand'
 Plug 'Wolfy87/vim-syntax-expand'
-
+Plug 'jistr/vim-nerdtree-tabs'
 " Unmanaged plugin (manually installed and updated)
 Plug 'mxw/vim-jsx'
 call plug#end()
 map <C-N> :NERDTreeToggle<CR>
 "let g:gruvbox_italic=1
 let mapleader = " "
+
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 set tabstop=2
 set shiftwidth=2
@@ -122,6 +128,11 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0 
+let g:syntastic_javascript_checkers = ['eslint']
 nnoremap <leader>` :PlugInstall<CR>
 nnoremap <silent> <leader>ti :IndentGuidesToggle<CR>
 let g:indent_guides_enable_on_vim_startup=1

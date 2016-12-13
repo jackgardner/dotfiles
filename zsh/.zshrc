@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jack/.oh-my-zsh
+export ZSH=/Users/jackgardner/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -8,6 +8,7 @@ export ZSH=/Users/jack/.oh-my-zsh
 ZSH_THEME="clean"
 DISABLE_AUTO_TITLE="true"
 export BROWSER="firefox-developer"
+export EDITOR="vim"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -59,6 +60,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
+export NPM_TOKEN=d98cf937-bb94-4c8a-b2b1-87da1e57d3e0
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -83,16 +85,16 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias vi='vim'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="/Users/jack/.nvm"
-. $(brew --prefix nvm)/nvm.sh
-#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # The next line updates PATH for the Google Cloud SDK.
-source '/Users/jack/google-cloud-sdk/path.zsh.inc'
+# source '/Users/jack/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/Users/jack/google-cloud-sdk/completion.zsh.inc'
+# source '/Users/jack/google-cloud-sdk/completion.zsh.inc'
 
-ulimit -n 65536 65536
+#ulimit -n 65536 65536
+
+export NVM_DIR="/Users/jackgardner/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
