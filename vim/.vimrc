@@ -1,8 +1,11 @@
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'altercation/vim-colors-solarized'
 
+Plug 'whatyouhide/vim-gotham'
+Plug 'w0ng/vim-hybrid'
 " Make sure you use single quotes
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
@@ -32,13 +35,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 
+Plug 'terryma/vim-multiple-cursors'
 
 Plug 'vim-syntastic/syntastic'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'haya14busa/incsearch.vim'
 
 Plug 'easymotion/vim-easymotion'
@@ -56,17 +59,24 @@ Plug 'jistr/vim-nerdtree-tabs'
 " Unmanaged plugin (manually installed and updated)
 Plug 'mxw/vim-jsx'
 call plug#end()
-map <C-N> :NERDTreeToggle<CR>
 "let g:gruvbox_italic=1
 let mapleader = " "
 
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
+
+let g:multi_cursor_use_default_mapping=0
+
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
 set number
+set relativenumber
 set splitright
 set splitbelow
 set visualbell
@@ -133,6 +143,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0 
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_loc_list_height = 3
+
 nnoremap <leader>` :PlugInstall<CR>
 nnoremap <silent> <leader>ti :IndentGuidesToggle<CR>
 let g:indent_guides_enable_on_vim_startup=1
@@ -188,4 +200,11 @@ nmap ga <Plug>(EasyAlign)
 
 syntax enable
 set background=dark
-colorscheme solarized
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+
+set clipboard=unnamed
+
+
+
+colorscheme hybrid 

@@ -84,21 +84,21 @@ lalt + ctrl - left          : kwmc window -m space left
 lalt + ctrl - right         : kwmc window -m space right
 
 # # Move Focused Window To Screen
-# ctrl + alt - 1           :    kwmc window -m display 0
-# ctrl + alt - 2           :    kwmc window -m display 1
-# ctrl + alt - 3           :    kwmc window -m display 2
+lalt + ctrl - 1           :    kwmc window -m display 0
+lalt + ctrl - 2           :    kwmc window -m display 1
+lalt + ctrl - 3           :    kwmc window -m display 2
 
 # Set Temporary Window Container
 # cmd + alt + ctrl - d               :    kwmc window -z parent
 
 # Set Space Tiling Mode To BSP
- cmd + alt + ctrl - a     : kwmc space -t bsp
+ cmd + lalt + ctrl - a     : kwmc space -t bsp
 
 # Set Space Tiling Mode To Monocle
- cmd + alt + ctrl - s     : kwmc space -t monocle
+ cmd + lalt + ctrl - s     : kwmc space -t monocle
 
 # Set Space Tiling Mode To Floating
- cmd + alt + ctrl - d     : kwmc space -t float
+ cmd + lalt + ctrl - d     : kwmc space -t float
 
 # Rotate Window-Tree By 90degrees (Clockwise)
 # cmd + alt + ctrl - r      :    kwmc tree rotate 90
