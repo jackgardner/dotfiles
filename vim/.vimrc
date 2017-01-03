@@ -37,7 +37,8 @@ Plug 'tpope/vim-vinegar'
 
 Plug 'terryma/vim-multiple-cursors'
 
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
+Plug 'neomake/neomake'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'Keithbsmiley/tmux.vim'
@@ -87,7 +88,6 @@ set hlsearch
 
  " Highlight the current line.
 set cursorline
-imap jk <Esc>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
@@ -127,6 +127,8 @@ function! s:after_colorscheme()
   highlight GitGutterChangeDelete ctermfg=yellow
 endfunction
 
+set timeoutlen=1000 ttimeoutlen=0
+
 augroup after_colorscheme
   autocmd!
   autocmd ColorScheme * call s:after_colorscheme()
@@ -144,6 +146,16 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_loc_list_height = 3
+
+
+augroup vimrc_neomake
+  au!
+  autocmd BufWritePost * Neomake
+augroup END
+
+let g:neomake_verbose=3
+let g:neomake_open_list = 1
+let g:neomake_javascript_enabled_makers = [ 'eslint' ]
 
 nnoremap <leader>` :PlugInstall<CR>
 nnoremap <silent> <leader>ti :IndentGuidesToggle<CR>
@@ -205,6 +217,7 @@ let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palett
 
 set clipboard=unnamed
 
+map q <Nop>
 
 
 colorscheme hybrid 

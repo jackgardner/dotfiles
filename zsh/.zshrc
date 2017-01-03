@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jackgardner/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -8,7 +8,10 @@ export ZSH=/Users/jackgardner/.oh-my-zsh
 ZSH_THEME="clean"
 DISABLE_AUTO_TITLE="true"
 export BROWSER="firefox-developer"
-export EDITOR="vim"
+export EDITOR="nvim"
+
+alias vim=nvim
+KEYTIMEOUT=1
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -60,7 +63,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
-export NPM_TOKEN=d98cf937-bb94-4c8a-b2b1-87da1e57d3e0
+#export NPM_TOKEN=d98cf937-bb94-4c8a-b2b1-87da1e57d3e0
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -96,5 +99,5 @@ alias vi='vim'
 
 #ulimit -n 65536 65536
 
-export NVM_DIR="/Users/jackgardner/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
