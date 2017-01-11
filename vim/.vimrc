@@ -201,7 +201,8 @@ map g/ <Plug>(incsearch-stay)
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 
-let g:js_context_colors_enabled=0
+let g:jsx_ext_required = 0
+let g:js_context_colors_enabled=1
 let g:js_context_colors_allow_jsx_syntax=1
 let g:js_context_colors_block_scope=1
 let g:js_context_colors_block_scope_with_let=1
