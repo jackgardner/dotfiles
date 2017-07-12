@@ -91,13 +91,13 @@ source $ZSH/oh-my-zsh.sh
 alias vi='vim'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# The next line updates PATH for the Google Cloud SDK.
-# source '/Users/jack/google-cloud-sdk/path.zsh.inc'
-
-# The next line enables shell command completion for gcloud.
-# source '/Users/jack/google-cloud-sdk/completion.zsh.inc'
-
 #ulimit -n 65536 65536
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jack/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jack/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jack/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jack/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

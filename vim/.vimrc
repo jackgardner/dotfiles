@@ -224,4 +224,4 @@ set clipboard=unnamed
 map q <Nop>
 
 
-colorscheme hybrid 
+colorscheme gruvbox 
