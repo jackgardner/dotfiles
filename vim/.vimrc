@@ -40,19 +40,17 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'vim-syntastic/syntastic'
 Plug 'neomake/neomake'
 Plug 'editorconfig/editorconfig-vim'
-
+Plug 'rhysd/committia.vim'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'haya14busa/incsearch.vim'
 
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'helino/vim-json'
+Plug 'elzr/vim-json'
 Plug 'mhinz/vim-signify'
-Plug 'Valloric/YouCompleteMe'
 Plug 'junegunn/vim-easy-align', { 'do': 'EasyAlign' }
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mileszs/ack.vim'
 Plug 'Wolfy87/vim-expand'
 Plug 'Wolfy87/vim-syntax-expand'
@@ -162,14 +160,6 @@ let g:neomake_javascript_enabled_makers = [ 'eslint' ]
 
 nnoremap <leader>` :PlugInstall<CR>
 nnoremap <silent> <leader>ti :IndentGuidesToggle<CR>
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_auto_colors=0
-
-augroup indent_guide_settings
-  autocmd!
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermfg=white
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermfg=white ctermbg=black
-augroup END
 
 nmap <c-t> :tabnew<CR>
 nmap <leader>sw<left> :topleft vnew<CR>
@@ -223,5 +213,3 @@ set clipboard=unnamed
 
 map q <Nop>
 
-
-colorscheme gruvbox 
