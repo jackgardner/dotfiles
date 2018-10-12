@@ -11,6 +11,17 @@ export BROWSER="firefox-developer"
 export EDITOR="nvim"
 
 alias vim=nvim
+
+klogs () {
+  APP=$1
+  shift;
+  kubectl -n applications logs -l application=$APP $@
+}
+
+kmysql () {
+  MYSQL_POD_NAME=$(kubectl -n applications get pods -l app=mysql | tail -n1 | awk '{print $1}') 
+  kubectl -n applications exec -it $MYSQL_POD_NAME -- mysql -u root --password=root
+}
 KEYTIMEOUT=1
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,10 +65,10 @@ KEYTIMEOUT=1
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow sublime brew osx)
+plugins=(sublime brew osx)
 
 # User configuration
-
+export GOPATH=$HOME/go:$HOME/Development/IAT/drogo/go
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -93,6 +104,16 @@ alias vi='vim'
 
 #ulimit -n 65536 65536
 
+export PATH=$PATH:$HOME/go/bin:$HOME/bin
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias crontab="VIM_CRONTAB=true crontab"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jack/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jack/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jack/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jack/google-cloud-sdk/completion.zsh.inc'; fi

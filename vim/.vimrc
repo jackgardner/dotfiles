@@ -1,75 +1,70 @@
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'altercation/vim-colors-solarized'
-
-Plug 'whatyouhide/vim-gotham'
-Plug 'w0ng/vim-hybrid'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Make sure you use single quotes
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/vim-easy-align'
 Plug 'jeetsukumaran/vim-buffergator'
 " Group dependencies, vim-snippets depends on ultisnips
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 Plug 'bling/vim-airline'
-Plug 'aklt/plantuml-syntax'
-
-Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' }
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-leiningen'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
-
 Plug 'terryma/vim-multiple-cursors'
-
-"Plug 'vim-syntastic/syntastic'
-Plug 'neomake/neomake'
+Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'rhysd/committia.vim'
-Plug 'Keithbsmiley/tmux.vim'
-Plug 'pangloss/vim-javascript'
 Plug 'haya14busa/incsearch.vim'
-
 Plug 'easymotion/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'elzr/vim-json'
-Plug 'mhinz/vim-signify'
-Plug 'junegunn/vim-easy-align', { 'do': 'EasyAlign' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+
+
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'mileszs/ack.vim'
-Plug 'Wolfy87/vim-expand'
-Plug 'Wolfy87/vim-syntax-expand'
 Plug 'jistr/vim-nerdtree-tabs'
-" Unmanaged plugin (manually installed and updated)
-Plug 'mxw/vim-jsx'
+
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+Plug 'w0rp/ale'
+Plug 'alampros/vim-styled-jsx', { 'for': 'javascript.jsx'} 
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+
+Plug 'junegunn/gv.vim'                  " Git commit browser
+Plug 'tpope/vim-fugitive'               " Git commands
+Plug 'tpope/vim-vinegar'
+Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go'
+Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
+Plug 'jiangmiao/auto-pairs'
+" Colour scheme
+Plug 'joshdick/onedark.vim'
 call plug#end()
+
+map q <Nop>
+
 "let g:gruvbox_italic=1
 let mapleader = " "
-
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
 noremap <C-n> :NERDTreeToggle<CR>
-
+let g:tern#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx'
+                \ ]
 let g:multi_cursor_use_default_mapping=0
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#ternjs#filetypes = [
+  \ 'jsx',
+  \ 'javascript.jsx'
+  \ ]
 
-let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_next_key='<C-g>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
-
+set nocompatible
+set hidden
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -81,6 +76,11 @@ set splitbelow
 set visualbell
 set smarttab
 
+" Deoplete
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['buffer']
+set completeopt-=preview 
+
 " Highlight searches.
 set hlsearch
 
@@ -88,6 +88,7 @@ set hlsearch
 set cursorline
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
+  let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
 
 cnoreabbrev Ack Ack!
@@ -102,57 +103,9 @@ if has('mouse')
   endif
 endif
 
-function! s:after_colorscheme()
-   " Make spelling problems easier to read.
-  highlight clear SpellBad
-  highlight clear SpellCap
-  highlight clear SpellLocal
-  highlight clear SpellRare
-
-  highlight SpellBad cterm=underline
-  highlight SpellCap cterm=underline
-  highlight SpellLocal cterm=underline
-  highlight SpellRare cterm=underline
-
-  " Stop the cross hair ruining highlighting.
- " highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=#3a3a3a guifg=NONE
-  "highlight CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=#3a3a3a guifg=NONE
-  
-  "highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-  " Make conceal look better.
-  highlight Conceal cterm=bold ctermbg=236 ctermfg=190
-  highlight clear SignColumn
-  highlight GitGutterAdd ctermfg=green
-  highlight GitGutterChange ctermfg=yellow
-  highlight GitGutterDelete ctermfg=red
-  highlight GitGutterChangeDelete ctermfg=yellow
-endfunction
-
-set timeoutlen=1000 ttimeoutlen=0
-
-augroup after_colorscheme
-  autocmd!
-  autocmd ColorScheme * call s:after_colorscheme()
-augroup END
-
-call togglebg#map("<F5>")
-
 let g:airline#extensions#tabline#enabled=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_loc_list_height = 3
-
-
-augroup vimrc_neomake
-  au!
-  autocmd BufWritePost * Neomake
-augroup END
 
 let g:neomake_verbose=3
 let g:neomake_open_list = 1
@@ -161,7 +114,8 @@ let g:neomake_javascript_enabled_makers = [ 'eslint' ]
 nnoremap <leader>` :PlugInstall<CR>
 nnoremap <silent> <leader>ti :IndentGuidesToggle<CR>
 
-nmap <c-t> :tabnew<CR>
+nmap <c-B> :TernDef<CR>
+
 nmap <leader>sw<left> :topleft vnew<CR>
 nmap <leader>sw<right> :botright vnew<CR>
 nmap <leader>sw<up>	:topleft new<CR>
@@ -176,40 +130,102 @@ map <leader>gn :bn<cr>
 map <leader>gp :bp<cr>
 map <leader>gd :bd<cr>
 
-set conceallevel=1
-set concealcursor=nvic
-
-let g:javascript_conceal_function = "λ"
-let g:javascript_conceal_this = "@"
-let g:javascript_conceal_return = "<"
-let g:javascript_conceal_prototype = "#"
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" if executable("ag")
+"    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+" endif
 
+" FZF
+
+
+
+let g:fzf_height = 10
+
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --skip-vcs-ignores --ignore .git -l -g ""'
+
+"                           Search open buffers
+nnoremap <leader>fb         :Buffers<CR>
+"                           Search buffer commits
+nnoremap <leader>fc         :BCommits<CR>
+"                           Search commits
+nnoremap <leader>fC         :Commits<CR>
+"                           Search changed files
+nnoremap <leader>fd         :GFiles?<CR>
+"                           Search v:oldfiles and open buffers
+nnoremap <leader>fe         :History<CR>
+"                           Search all tags
+nnoremap <leader>fe         :History<CR>
+"                           Search lines in current buffer
+nnoremap <leader>fl         :BLines<CR>
+"                           Search lines in loaded buffers
+nnoremap <leader>fL         :Lines<CR>
+"                           Search marks
+nnoremap <leader>fm         :Marks<CR>
+"                           Search marks
+nnoremap <leader>fM         :Maps<CR>
+"                           Search git files
+nnoremap <leader>fo         :GFiles<CR>
+"                           Search all files
+nnoremap <leader>fO         :Files<CR>
+nnoremap <C-p>              :GFiles<cr>
+"                           Search buffer tags
+nnoremap <leader>ft         :BTags<CR>
+"                           Search all tags
+nnoremap <leader>fT         :Tags<CR>
+"                           Search windows
+nnoremap <leader>fw         :Windows<CR>
+
+let g:signify_vcs_list = [ 'git' ]
 
 let g:jsx_ext_required = 0
-let g:js_context_colors_enabled=1
-let g:js_context_colors_allow_jsx_syntax=1
-let g:js_context_colors_block_scope=1
-let g:js_context_colors_block_scope_with_let=1
-let g:js_context_colors_jsx=1
-let g:js_context_colors_debug=1
-map <leader>h :JSContextColorToggle<cr>
+let g:airline#extensions#ale#enabled = 1
+let g:ale_fixers = {
+      \ 'javascript': [
+        \ 'eslint',
+      \ ]
+      \}
+let g:ale_fix_on_save = 1
 
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+let g:go_fmt_fail_silently = 1
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
 
-
+let g:javascript_plugin_flow = 1
 syntax enable
-set background=dark
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-
 set clipboard=unnamed
 
-map q <Nop>
+set background=dark
 
+set colorcolumn=80
+
+
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+if $VIM_CRONTAB == "true"
+  set nobackup
+  set nowritebackup
+endif
+
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-h> <C-w>h
+
+" nnoremap `gT i````gT
+nnoremap ¬ gt
+nnoremap T :tabnew<cr>
+
+colorscheme onedark 
