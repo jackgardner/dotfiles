@@ -68,9 +68,6 @@ KEYTIMEOUT=1
 plugins=(sublime brew osx)
 
 # User configuration
-export GOPATH=$HOME/go:$HOME/Development/IAT/drogo/go
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,16 +101,8 @@ alias vi='vim'
 
 #ulimit -n 65536 65536
 
-export PATH=$PATH:$HOME/go/bin:$HOME/bin
-
-export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias crontab="VIM_CRONTAB=true crontab"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jack/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jack/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/jack/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jack/google-cloud-sdk/completion.zsh.inc'; fi

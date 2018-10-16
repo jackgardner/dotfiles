@@ -31,7 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     javascript
+     yaml
+     (tern :variables tern-command '("node" "~/.nvm/versions/node/v8.4.0/bin/tern"))
+     (javascript :variables node-add-modules-path t)
      go
      python
      ;; ----------------------------------------------------------------
@@ -46,6 +48,7 @@ values."
      git
      osx
      themes-megapack
+     react
      ;; markdown
      ;; org
      ;; (shell :variables
@@ -59,7 +62,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-                                      add-node-modules-path
+                                      exec-path-from-shell
                                       (eslint-fix :location (recipe :fetcher github :repo "codesuki/eslint-fix"))
                                       (hybrid-theme :location (recipe :fetcher github :repo "evanbergeron/hybrid-emacs"))
                                       editorconfig
@@ -182,6 +185,7 @@ values."
    dotspacemacs-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
+   dotspacemacs-mode-line-theme 'vim-powerline
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
    dotspacemacs-display-default-layout nil
@@ -326,14 +330,13 @@ you should place your code here."
   (setq powerline-image-apple-rgb t)
   (setq powerline-default-separator 'utf-8)
   (setq js2-mode-show-parse-errors nil js2-mode-show-strict-warnings nil)
-
-
-  (eval-after-load 'js2-mode
-    '(add-hook 'js2-mode-hook #'add-node-modules-path))
+  (setq backup-directory-alist
+        `((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+        `((".*" ,temporary-file-directory t)))
 
   (eval-after-load 'js2-mode
     '(add-hook 'js2-mode-hook (lambda() (add-hook 'after-save-hook 'eslint-fix nil t))))
-
   (defun split-window-multiple-ways (x y)
     "Split the current frame into a grid of X columns and Y rows."
     (interactive "nColumns: \nnRows: ")
@@ -422,6 +425,7 @@ you should place your code here."
    (quote
     ("06239857eba54280977d62190690bef6d58f9653465c71b0fe279c560fdcac80" "09844be0970623174299a99f0addcddfb91334a4231f6ad86c82eb0f2c4e78af" "88c9585322c217e9ef986050092c010c11f31d39db62e7adc369e5b4376266d4" "47ec21abaa6642fefec1b7ace282221574c2dd7ef7715c099af5629926eb4fd7" "3860a842e0bf585df9e5785e06d600a86e8b605e5cc0b74320dfe667bcbe816c" "725a0ac226fc6a7372074c8924c18394448bb011916c05a87518ad4563738668" "e6ccd0cc810aa6458391e95e4874942875252cd0342efd5a193de92bfbb6416b" "392395ee6e6844aec5a76ca4f5c820b97119ddc5290f4e0f58b38c9748181e8d" "af4dc574b2f96f5345d55b98af024e2db9b9bbf1872b3132bc66dffbf5e1ba1d" "dd43ce1171324a8e47f9e4ca9f49773c4b4960706171ab951130c668adc59f53" "2d15316ddb0b94c9c8b4c6cc77ef68486ff738d05bbb6edefec0dca7eafedcae" "c7f10959cb1bc7a36ee355c765a1768d48929ec55dde137da51077ac7f899521" "2593436c53c59d650c8e3b5337a45f0e1542b1ba46ce8956861316e860b145a0" "d1cc05d755d5a21a31bced25bed40f85d8677e69c73ca365628ce8024827c9e3" "58c6711a3b568437bab07a30385d34aacf64156cc5137ea20e799984f4227265" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "b3775ba758e7d31f3bb849e7c9e48ff60929a792961a2d536edec8f68c671ca5" "7f89ec3c988c398b88f7304a75ed225eaac64efa8df3638c815acc563dfd3b55" "c93889826aa14d6bf4ff491780d0888d217e67e04209da823720ee50435e3bb1" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "c48551a5fb7b9fc019bf3f61ebf14cf7c9cdca79bcb2a4219195371c02268f11" "9b59e147dbbde5e638ea1cde5ec0a358d5f269d27bd2b893a0947c4a867e14c1" "99c879e5598d0f1b1820560cf1fe95794ec6b8e2d4e45890743c9d2e2dd66962" default)))
  '(evil-want-Y-yank-to-eol nil)
+ '(exec-path-from-shell-arguments (quote ("-l")))
  '(fci-rule-color "#f1c40f" t)
  '(flycheck-disabled-checkers nil)
  '(frame-brackground-mode (quote dark))
@@ -445,7 +449,7 @@ you should place your code here."
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (gruvbox-theme-theme magit-todos go-guru go-eldoc go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic editorconfig hybrid-theme eslint-fix add-node-modules-path zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gandalf-theme flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme diff-hl darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-dictionary apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme web-beautify tern livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode smeargle reveal-in-osx-finder pbcopy osx-trash osx-dictionary orgit magit-gitflow launchctl helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub treepy graphql with-editor ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode yaml-mode gruvbox-theme-theme magit-todos go-guru go-eldoc go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic editorconfig hybrid-theme eslint-fix add-node-modules-path zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gandalf-theme flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme diff-hl darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-dictionary apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme web-beautify tern livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode smeargle reveal-in-osx-finder pbcopy osx-trash osx-dictionary orgit magit-gitflow launchctl helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub treepy graphql with-editor ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(pdf-view-midnight-colors (quote ("#c5c8c6" . "#232c31")))
  '(pos-tip-background-color "#E6DB74")
  '(pos-tip-foreground-color "#242728")
@@ -484,3 +488,82 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Fira Code" :foundry "nil" :slant normal :weight normal :height 181 :width normal)))))
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(compilation-message-face (quote default))
+ '(custom-safe-themes
+   (quote
+    ("06239857eba54280977d62190690bef6d58f9653465c71b0fe279c560fdcac80" "09844be0970623174299a99f0addcddfb91334a4231f6ad86c82eb0f2c4e78af" "88c9585322c217e9ef986050092c010c11f31d39db62e7adc369e5b4376266d4" "47ec21abaa6642fefec1b7ace282221574c2dd7ef7715c099af5629926eb4fd7" "3860a842e0bf585df9e5785e06d600a86e8b605e5cc0b74320dfe667bcbe816c" "725a0ac226fc6a7372074c8924c18394448bb011916c05a87518ad4563738668" "e6ccd0cc810aa6458391e95e4874942875252cd0342efd5a193de92bfbb6416b" "392395ee6e6844aec5a76ca4f5c820b97119ddc5290f4e0f58b38c9748181e8d" "af4dc574b2f96f5345d55b98af024e2db9b9bbf1872b3132bc66dffbf5e1ba1d" "dd43ce1171324a8e47f9e4ca9f49773c4b4960706171ab951130c668adc59f53" "2d15316ddb0b94c9c8b4c6cc77ef68486ff738d05bbb6edefec0dca7eafedcae" "c7f10959cb1bc7a36ee355c765a1768d48929ec55dde137da51077ac7f899521" "2593436c53c59d650c8e3b5337a45f0e1542b1ba46ce8956861316e860b145a0" "d1cc05d755d5a21a31bced25bed40f85d8677e69c73ca365628ce8024827c9e3" "58c6711a3b568437bab07a30385d34aacf64156cc5137ea20e799984f4227265" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "b3775ba758e7d31f3bb849e7c9e48ff60929a792961a2d536edec8f68c671ca5" "7f89ec3c988c398b88f7304a75ed225eaac64efa8df3638c815acc563dfd3b55" "c93889826aa14d6bf4ff491780d0888d217e67e04209da823720ee50435e3bb1" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "c48551a5fb7b9fc019bf3f61ebf14cf7c9cdca79bcb2a4219195371c02268f11" "9b59e147dbbde5e638ea1cde5ec0a358d5f269d27bd2b893a0947c4a867e14c1" "99c879e5598d0f1b1820560cf1fe95794ec6b8e2d4e45890743c9d2e2dd66962" default)))
+ '(evil-want-Y-yank-to-eol nil)
+ '(exec-path-from-shell-arguments (quote ("-l")))
+ '(fci-rule-color "#f1c40f" t)
+ '(flycheck-disabled-checkers nil)
+ '(frame-brackground-mode (quote dark))
+ '(highlight-changes-colors (quote ("#ff8eff" "#ab7eff")))
+ '(highlight-tail-colors
+   (quote
+    (("#424748" . 0)
+     ("#63de5d" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#424748" . 100))))
+ '(hl-paren-background-colors (quote ("#2492db" "#95a5a6" nil)))
+ '(hl-paren-colors (quote ("#ecf0f1" "#ecf0f1" "#c0392b")) t)
+ '(linum-format " %7i ")
+ '(magit-diff-use-overlays nil)
+ '(nrepl-message-colors
+   (quote
+    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(package-selected-packages
+   (quote
+    (symon string-inflection spaceline-all-the-icons rjsx-mode prettier-js pippel pipenv password-generator overseer nameless magit-svn kaolin-themes json-navigator hierarchy importmagic epc ctable concurrent deferred helm-xref helm-purpose window-purpose imenu-list helm-git-grep godoctor go-tag go-rename go-impl go-gen-test go-fill-struct gitignore-templates eziam-theme evil-lion evil-goggles evil-cleverparens paredit doom-themes doom-modeline eldoc-eval shrink-path all-the-icons memoize counsel-projectile counsel swiper ivy centered-cursor-mode browse-at-remote font-lock+ dotenv-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode yaml-mode gruvbox-theme-theme magit-todos go-guru go-eldoc go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic editorconfig hybrid-theme eslint-fix add-node-modules-path zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gandalf-theme flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme diff-hl darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-dictionary apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme web-beautify tern livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode smeargle reveal-in-osx-finder pbcopy osx-trash osx-dictionary orgit magit-gitflow launchctl helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub treepy graphql with-editor ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+ '(pdf-view-midnight-colors (quote ("#c5c8c6" . "#232c31")))
+ '(pos-tip-background-color "#E6DB74")
+ '(pos-tip-foreground-color "#242728")
+ '(safe-local-variable-values
+   (quote
+    ((magit-todos-exclude-globs
+      ((quote node_modules/**/*)))
+     (magit-todos-exclude-globs
+      (node_modules/**/*)))))
+ '(show-paren-mode t)
+ '(sml/active-background-color "#34495e")
+ '(sml/active-foreground-color "#ecf0f1")
+ '(sml/inactive-background-color "#dfe4ea")
+ '(sml/inactive-foreground-color "#34495e")
+ '(vc-annotate-background "#ecf0f1")
+ '(vc-annotate-color-map
+   (quote
+    ((30 . "#e74c3c")
+     (60 . "#c0392b")
+     (90 . "#e67e22")
+     (120 . "#d35400")
+     (150 . "#f1c40f")
+     (180 . "#d98c10")
+     (210 . "#2ecc71")
+     (240 . "#27ae60")
+     (270 . "#1abc9c")
+     (300 . "#16a085")
+     (330 . "#2492db")
+     (360 . "#0a74b9"))))
+ '(vc-annotate-very-old-color "#0a74b9")
+ '(weechat-color-list
+   (unspecified "#242728" "#424748" "#F70057" "#ff0066" "#86C30D" "#63de5d" "#BEB244" "#E6DB74" "#40CAE4" "#06d8ff" "#FF61FF" "#ff8eff" "#00b2ac" "#53f2dc" "#f8fbfc" "#ffffff")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
