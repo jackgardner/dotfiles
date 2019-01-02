@@ -1,0 +1,19 @@
+Plugin 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plugin 'fatih/vim-go'
+
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plugin 'zchee/deoplete-go', { 'do': 'make'}
+
+Plugin 'jremmen/vim-ripgrep'
+Plugin 'file:///usr/local/opt/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'mxw/vim-jsx'
+
+Plugin 'w0rp/ale'
+
+Plugin 'ajh17/Spacegray.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+

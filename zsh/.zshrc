@@ -5,9 +5,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 #$ time that oh-my-zsh is loaded.
-ZSH_THEME="clean"
+ZSH_THEME="minimal"
 DISABLE_AUTO_TITLE="true"
-export BROWSER="firefox-developer"
+export BROWSER="chromium"
 export EDITOR="nvim"
 
 alias vim=nvim
@@ -19,7 +19,7 @@ klogs () {
 }
 
 kmysql () {
-  MYSQL_POD_NAME=$(kubectl -n applications get pods -l app=mysql | tail -n1 | awk '{print $1}') 
+  MYSQL_POD_NAME=$(kubectl -n applications get pods -l app=mysql | tail -n1 | awk '{print $1}')
   kubectl -n applications exec -it $MYSQL_POD_NAME -- mysql -u root --password=root
 }
 KEYTIMEOUT=1
@@ -65,7 +65,7 @@ KEYTIMEOUT=1
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sublime brew osx)
+plugins=(git brew osx)
 
 # User configuration
 
@@ -101,8 +101,6 @@ alias vi='vim'
 
 #ulimit -n 65536 65536
 
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias crontab="VIM_CRONTAB=true crontab"
-
+source ~/.zshenv
