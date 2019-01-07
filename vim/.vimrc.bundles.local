@@ -1,3 +1,4 @@
+Plugin 'ayu-theme/ayu-vim'
 Plugin 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plugin 'fatih/vim-go'
 
@@ -16,4 +17,3 @@ Plugin 'w0rp/ale'
 Plugin 'ajh17/Spacegray.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-

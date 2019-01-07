@@ -1,6 +1,6 @@
 " keyboard shortcuts
 inoremap jj <ESC>
-set background=dark
+" set background=dark
 " highlight search
 set hlsearch
 nmap <leader>hl :let @/ = ""<CR>
@@ -49,7 +49,9 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
-    colorscheme spacegray
+    set termguicolors
+    let ayucolor="mirage"
+    colorscheme ayu
   else
     colorscheme desert
   endif
