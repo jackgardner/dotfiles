@@ -1,3 +1,4 @@
+syntax on
 set nocompatible
 set autoread
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
@@ -5,6 +6,11 @@ autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 filetype off
 
+if has("termguicolors")
+  set termguicolors
+endif
+
+set clipboard=unnamed 
 call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'chriskempson/base16-vim'
@@ -18,6 +24,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'yuezk/vim-js'
 Plug 'itchyny/lightline.vim'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'tpope/vim-fugitive'
@@ -33,6 +40,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'lambdalisue/fila.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'honza/vim-snippets'
+Plug 'freeo/vim-kalisi'
 call plug#end()
 set mouse=a
 
@@ -50,7 +58,7 @@ let g:go_info_mode='gopls'
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 inoremap jk <ESC>
-nnoremap <silent> <leader>n :Fila -toggle -drawer<CR>
+nnoremap <silent> <leader>n :Fern . -toggle -drawer<CR>
 
 set noshowmode
 set smarttab
@@ -82,6 +90,10 @@ nnoremap <silent> <leader>sv    :vsplit<CR>
 nnoremap <silent> <leader>ss    :split<CR>
 nnoremap <silent> <leader>T     :tabnew<CR>
 nnoremap <silent> <leader>hl    :nohl<CR>
+
+noremap [t :tabprevious<CR>
+noremap ]t :tabnext<CR>
+
 let g:sneak#label = 1
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
@@ -91,7 +103,6 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste'],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ],
       \ },
-      \ 'colorscheme': 'PaperColor',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \   'gitbranch': 'fugitive#head',
@@ -126,6 +137,15 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+function! s:init_fern() abort
+  echo "Customiseing"
+  nmap <buffer> v <Plug>(fila-action-open:split)
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
 set signcolumn=yes
 
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -152,7 +172,6 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 
-syntax on
 let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default': { 
@@ -161,9 +180,8 @@ let g:PaperColor_Theme_Options = {
   \       }
   \     }
   \   }
-set background=light
-colorscheme PaperColor 
-
+set background=dark
+colorscheme base16-gruvbox-dark-hard 
 set undodir=~/.vimdid
 set undofile
 
@@ -172,19 +190,8 @@ set wildmode=list:longest
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendorz
 
 
-function! s:fila_viewer_init() abort
-  nmap <buffer><nowait> s <Plug>(fila-action-edit-select)
-  nmap <buffer><nowait> p <Plug>(fila-action-edit-pedit)
-  nmap <buffer><nowait> <C-j> <Plug>(fila-action-mark-toggle)j
-  nmap <buffer><nowait> <C-k> <Plug>(fila-action-mark-toggle)k
-  nmap <buffer><nowait> <C-v> <Plug>(fila-action-edit-vsplit)
-  nmap <buffer><nowait> <C-x> <Plug>(fila-action-edit-split)
-  nmap <buffer><nowait> N  <Plug>(fila-action-new-file)
-  nmap <buffer><nowait> K  <Plug>(fila-action-new-directory)
-  nmap <buffer><nowait> m  <Plug>(fila-action-move)
-  nmap <buffer><nowait> c  <Plug>(fila-action-copy)
-  nmap <buffer><nowait> p  <Plug>(fila-action-paste)
-  nmap <buffer><nowait> d  <Plug>(fila-action-delete)
-endfunction
-autocmd User FilaViewerInit call s:fila_viewer_init()
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
