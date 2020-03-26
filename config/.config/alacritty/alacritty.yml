@@ -86,7 +86,7 @@ font:
     #   - (Windows) Consolas
     family: "Fira Code"
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Regular 
 
   # Bold font face
   bold:
@@ -111,13 +111,13 @@ font:
     style: Italic
 
   # Point size
-  size: 20.0
+  size: 18.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 0
+    y: 2
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -164,9 +164,6 @@ colors:
     foreground: '0xc5c8c6'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x1d1f21'
-    cursor: '0xffffff'
 
   # Normal colors
   normal:

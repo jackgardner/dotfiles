@@ -5,10 +5,9 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 filetype off
-
-if has("termguicolors")
-  set termguicolors
-endif
+  " if has("termguicolors")
+  "   set termguicolors
+  " endif
 
 set clipboard=unnamed 
 call plug#begin('~/.vim/plugged')
@@ -24,7 +23,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'yuezk/vim-js'
+Plug 'pangloss/vim-javascript'
 Plug 'itchyny/lightline.vim'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'tpope/vim-fugitive'
@@ -41,6 +40,7 @@ Plug 'lambdalisue/fila.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'honza/vim-snippets'
 Plug 'freeo/vim-kalisi'
+Plug 'atelierbram/vim-colors_atelier-schemes'
 call plug#end()
 set mouse=a
 
@@ -98,11 +98,15 @@ let g:sneak#label = 1
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
 
+
+
+
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste'],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ],
       \ },
+      \ 'colorscheme': 'Atelier_Dune',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \   'gitbranch': 'fugitive#head',
@@ -138,7 +142,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 function! s:init_fern() abort
-  echo "Customiseing"
   nmap <buffer> v <Plug>(fila-action-open:split)
 endfunction
 
@@ -172,16 +175,16 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 
-let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default': { 
-  \         'allow_bold': 0,
-  \         'allow_italic': 1,
-  \       }
-  \     }
-  \   }
-set background=dark
-colorscheme base16-gruvbox-dark-hard 
+" let g:PaperColor_Theme_Options = {
+"   \   'theme': {
+"   \     'default': { 
+"   \         'allow_bold': 0,
+"   \         'allow_italic': 1,
+"   \       }
+"   \     }
+"   \   }
+" set background=dark
+" colorscheme base16-gruvbox-dark-hard 
 set undodir=~/.vimdid
 set undofile
 
