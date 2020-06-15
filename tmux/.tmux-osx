@@ -1,0 +1,7 @@
+bind -T copy-mode-vi y send-keys -X copy-pipe "reattach-to-user-namespace pbcopy"
+# Update default binding of `Enter` to also use copy-pipe
+unbind -T copy-mode-vi Enter
+bind -T copy-mode-vi Enter send-keys -X copy-pipe "reattach-to-user-namespace pbcopy"
+# shortcut for moving tmux buffer to clipboard
+# useful if you've selected with the mouse
+bind-key -nr C-y run "tmux show-buffer | xclip -in -selection clipboard &> /dev/null"

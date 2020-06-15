@@ -1,1 +1,5 @@
 .DS_Store
+config/.config/fisher/github.com
+config/.config/helm
+config/.config/configstore
+config/.config/fish/functions

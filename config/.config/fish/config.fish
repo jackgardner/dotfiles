@@ -53,15 +53,6 @@ set -x PATH   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin:$HOME/go/
 set -x EDITOR nvim
 set -x BAT_THEME TwoDark 
 set -x GO111MODULE off 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/jack/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/jack/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.fish
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/jack/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.fish ]; and . /Users/jack/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.fish
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[ -f /Users/jack/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.fish ]; and . /Users/jack/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.fish
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jack/Development/google-cloud-sdk/path.fish.inc' ]; . '/Users/jack/Development/google-cloud-sdk/path.fish.inc'; end
