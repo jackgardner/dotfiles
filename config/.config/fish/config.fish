@@ -1,58 +1,34 @@
 source $HOME/.cargo/env
 alias ls="exa"
+alias g="git"
+alias bazel="bazelisk"
+alias kc="kubectl"
+export BROWSER=/home/jack/.local/bin/firefox
 
-if status --is-interactive
-    set BASE16_SHELL "$HOME/.config/base16-shell/"
-    source "$BASE16_SHELL/profile_helper.fish"
-end
+#if status --is-interactive
+#    set BASE16_SHELL "$HOME/.config/base16-shell/"
+#    source "$BASE16_SHELL/profile_helper.fish"
+#end
 
 function drogo
   cd ~/go/src/github.com/lakahq/drogo
 end
 
-function mysql
-  mycli -u root -h s3 -p root --auto-vertical-output -t
-end
-
-function mysql_stg
-  set -lx PASSWORD (lpass show k8s-stg --password)
-  set -lx USER (lpass show k8s-stg --user)
-  set -lx HOST (lpass show k8s-stg --field=host)
-  mycli -u $USER -h $HOST --pass $PASSWORD --auto-vertical-output -t --ssl-ca ~/go/src/github.com/lakahq/drogo/certificates/rds-ca-2019-root.pem
-end
-
-function mysql_prd
-  set -lx PASSWORD (lpass show k8s-prd --password)
-  set -lx USER (lpass show k8s-prd --user)
-  set -lx HOST (lpass show k8s-prd --field=host)
-  mycli -u $USER -h $HOST --pass $PASSWORD --auto-vertical-output -t --ssl-ca ~/go/src/github.com/lakahq/drogo/certificates/rds-combined-ca-bundle.pem
-end
-
-function fish_prompt
-	set_color brblack
-	echo -n "["(date "+%H:%M")"] "
-	set_color blue
-	echo -n (hostname)
-	if [ $PWD != $HOME ]
-		set_color brblack
-		echo -n ':'
-		set_color yellow
-		echo -n (basename $PWD)
-	end
-	set_color green
-	printf '%s ' (__fish_git_prompt)
-	set_color red
-	echo -n '| '
-	set_color normal
-end
 
 set -x CGO_CFLAGS_ALLOW -Xpreprocessor
 set -u GOROOT 
 set -x GOPATH $HOME/go # :$HOME/Development/IAT/drogo/bazel-drogo/external:$HOME/go
-set -x PATH   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin:$HOME/go/bin:$HOME/bin:/usr/local/opt/gnu-tar/libexec/gnubin:$HOME/.cargo/bin
 set -x EDITOR nvim
 set -x BAT_THEME TwoDark 
-set -x GO111MODULE off 
+set -x GO111MODULE on 
+set -x SLACK_CHANNEL_OVERRIDE @jack
+set -x DISPLAY (ip route | awk '{ print $3; exit }'):0
+set -x LIBGL_ALWAYS_INDIRECT 1
+set -x GDK_SCALE 1
+set -x ENCORE_INSTALL ~/.encore
+set -x PATH   $ENCORE_INSTALL/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:$HOME/go/bin:$HOME/bin:/usr/local/opt/gnu-tar/libexec/gnubin:$HOME/.cargo/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:$HOME/istio-1.9.4/bin
+
+env SHELL=fish /home/linuxbrew/.linuxbrew/bin/brew shellenv | source
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jack/Development/google-cloud-sdk/path.fish.inc' ]; . '/Users/jack/Development/google-cloud-sdk/path.fish.inc'; end
