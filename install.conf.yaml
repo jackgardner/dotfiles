@@ -6,6 +6,8 @@
 
 - link:
     ~/.tmux.conf: tmux/.tmux.conf
+    ~/.tmux-linux: tmux/.tmux-linux
+    ~/.tmux-osx: tmux/.tmux-osx
     ~/.config/:
       glob: true
       path: config/.config/*
@@ -26,5 +28,4 @@
       description: Downloading bat
     - [git submodule update --init --recursive, Installing submodules]
     - [sudo chsh -s `which fish`, Setting fish as default]
-    - [fish, Running it]
   
