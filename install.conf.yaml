@@ -8,15 +8,14 @@
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim
     ~/.vimrc: vimrc
+    ~/config/fish: ~/.config/fish
 
 - create:
     - ~/downloads
     - ~/.vim/undo-history
 
 - shell:
-    - command: bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      description: Installing linuxbrew
-    - command: bash -l 'brew install fish'
+    - command: bash -l 'sudo apt install fish'
       description: Installing fish
     - [git submodule update --init --recursive, Installing submodules]
   
