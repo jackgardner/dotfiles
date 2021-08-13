@@ -18,7 +18,7 @@
     - ~/.vim/undo-history
 
 - shell:
-    - command: bash -l 'sudo apt install fish'
+    - command: bash -c 'sudo apt install fish -y'
       description: Installing fish
     - [git submodule update --init --recursive, Installing submodules]
   
