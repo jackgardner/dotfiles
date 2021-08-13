@@ -7,7 +7,9 @@
 - link:
     ~/.tmux.conf: tmux.conf
     ~/.config/:
-      path: config/.config/**
+      glob: true
+      path: config/.config/*
+      relink: true
     # tmux.conf: ~/.tmux.conf
     # config/fish: ~/.config/fish
 
