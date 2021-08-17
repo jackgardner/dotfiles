@@ -20,12 +20,12 @@
     - ~/.vim/undo-history
 
 - shell:
-    - command: bash -c 'sudo apt install exa fish -y'
+    - command: bash -c 'sudo apt install exa tmux neovim fzf fish -y'
       description: Installing fish
     - command: |
         wget https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb 
         sudo dpkg -i ./bat_0.15.4_amd64.deb
       description: Downloading bat
     - [git submodule update --init --recursive, Installing submodules]
-    - [sudo chsh -s `which fish`, Setting fish as default]
+    - [sudo chsh -s `which fish` vscode, Setting fish as default]
   
