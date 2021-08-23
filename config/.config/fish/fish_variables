@@ -14,6 +14,7 @@ SETUVAR _hydro_git_1976:\x1d
 SETUVAR _hydro_git_508478:\x1d
 SETUVAR _hydro_git_515029:master\u2022\x20
 SETUVAR _hydro_git_74:master\u2022\x20
+SETUVAR _hydro_git_9:master\u2022\x20
 SETUVAR fish_color_autosuggestion:586e75
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:93a1a1

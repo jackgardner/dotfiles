@@ -15,6 +15,10 @@ function drogo
   cd ~/go/src/github.com/lakahq/drogo
 end
 
+function gssh
+    ssh -p 2222 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null vscode@localhost
+end
+
 
 set -x CGO_CFLAGS_ALLOW -Xpreprocessor
 set -u GOROOT 
