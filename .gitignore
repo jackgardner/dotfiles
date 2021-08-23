@@ -7,3 +7,4 @@ config/.config/fish/fish_variables
 config/.config/nvim/.netrwhist
 config/.config/insight-nodejs/insight-clinic.json
 config/.config/nextjs-nodejs/config.json
+bat*
