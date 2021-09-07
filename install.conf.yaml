@@ -6,6 +6,7 @@
 
 - link:
     ~/.tmux.conf: tmux/tmux.conf
+    ~/.bazelrc: .bazelrc
     ~/.tmux-linux: tmux/.tmux-linux
     ~/.tmux-osx: tmux/.tmux-osx
     ~/.config/:
