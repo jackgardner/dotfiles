@@ -1,5 +1,5 @@
 test --test_output=all --action_env=APP_VERSION=FOOBAR
 run --incompatible_restrict_string_escapes=false --action_env=APP_VERSION=FOOBAR
 build --incompatible_restrict_string_escapes=false --action_env=APP_VERSION=FOOBAR
-query --incompatible_restrict_string_escapes=false --action_env=APP_VERSION=FOOBAR
+query --incompatible_restrict_string_escapes=false
 
