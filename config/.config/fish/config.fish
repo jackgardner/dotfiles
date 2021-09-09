@@ -2,7 +2,6 @@
 if [ -f "$HOME/.cargo/env" ]; source "$HOME/.cargo/env"; end
 alias ls="exa"
 alias g="git"
-alias bazel="bazelisk"
 alias kc="kubectl"
 export BROWSER=/home/jack/.local/bin/firefox
 
