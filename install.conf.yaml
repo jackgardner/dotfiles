@@ -17,7 +17,7 @@
     ~/.tmux-osx: tmux/.tmux-osx
     ~/.config/:
       glob: true
-      path: config/.config/**
+      path: config/.config/*
       relink: true
       force: true
     # tmux.conf: ~/.tmux.conf
