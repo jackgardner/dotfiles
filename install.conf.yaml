@@ -2,7 +2,12 @@
     link:
       relink: true
 
-- clean: ['~']
+- clean: ['~', '~/.config']
+
+- create:
+    - ~/.config
+    - ~/downloads
+    - ~/.vim/undo-history
 
 - link:
     ~/.tmux.conf: tmux/tmux.conf
@@ -12,15 +17,12 @@
     ~/.tmux-osx: tmux/.tmux-osx
     ~/.config/:
       glob: true
-      path: config/.config/*
+      path: config/.config/**
       relink: true
       force: true
     # tmux.conf: ~/.tmux.conf
     # config/fish: ~/.config/fish
 
-- create:
-    - ~/downloads
-    - ~/.vim/undo-history
 
 - shell:
     - command: bash -c 'sudo apt install exa tmux neovim fzf fish -y'
