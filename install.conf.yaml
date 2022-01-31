@@ -14,6 +14,7 @@
       glob: true
       path: config/.config/*
       relink: true
+      force: true
     # tmux.conf: ~/.tmux.conf
     # config/fish: ~/.config/fish
 
