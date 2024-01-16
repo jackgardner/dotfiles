@@ -17,6 +17,7 @@ config.color_scheme = 'Belafonte Night'
 config.font = wezterm.font 'ComicCodeLigatures Nerd Font'
 config.front_end = "WebGpu"
 config.tab_bar_at_bottom = true
+config.enable_wayland = false
 
 -- and finally, return the configuration to wezterm
 return config
