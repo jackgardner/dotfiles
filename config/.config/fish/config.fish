@@ -25,7 +25,9 @@ set -x EDITOR nvim
 set -x BAT_THEME TwoDark
 set -x GO111MODULE on
 set -x SLACK_CHANNEL_OVERRIDE @jack
-set -x DISPLAY (ip route | awk '{ print $3; exit }'):0
+if type -q ip
+    set -x DISPLAY (ip route | awk '{ print $3; exit }'):0
+end
 set -x LIBGL_ALWAYS_INDIRECT 1
 set -x GDK_SCALE 1
 set -x ENCORE_INSTALL ~/.encore
