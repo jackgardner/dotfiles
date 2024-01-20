@@ -13,7 +13,7 @@ end
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = 'Belafonte Night'
+config.color_scheme = 'Gruvbox Material (Gogh)'
 config.font = wezterm.font 'ComicCodeLigatures Nerd Font'
 config.front_end = "WebGpu"
 config.tab_bar_at_bottom = true
