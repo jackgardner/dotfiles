@@ -1,9 +1,12 @@
 
-if [ -f "$HOME/.cargo/env" ]; source "$HOME/.cargo/env"; end
+if [ -f "$HOME/.cargo/env" ]
+    source "$HOME/.cargo/env"
+end
 alias ls="exa"
 alias g="git"
 alias kc="kubectl"
 alias bazel="bazelisk"
+alias vim="nvim"
 export BROWSER=/home/jack/.local/bin/firefox
 
 #if status --is-interactive
@@ -12,31 +15,32 @@ export BROWSER=/home/jack/.local/bin/firefox
 #end
 
 function drogo
-  cd ~/go/src/github.com/lakahq/drogo
+    cd ~/go/src/github.com/lakahq/drogo
 end
-
-function gssh
-    ssh -p 2222 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null vscode@localhost
-end
-
 
 set -x CGO_CFLAGS_ALLOW -Xpreprocessor
-set -u GOROOT 
+set -u GOROOT
 set -x GOPATH $HOME/go # :$HOME/Development/IAT/drogo/bazel-drogo/external:$HOME/go
 set -x EDITOR nvim
-set -x BAT_THEME TwoDark 
-set -x GO111MODULE on 
+set -x BAT_THEME TwoDark
+set -x GO111MODULE on
 set -x SLACK_CHANNEL_OVERRIDE @jack
 set -x DISPLAY (ip route | awk '{ print $3; exit }'):0
 set -x LIBGL_ALWAYS_INDIRECT 1
 set -x GDK_SCALE 1
 set -x ENCORE_INSTALL ~/.encore
-set -x PATH   $ENCORE_INSTALL/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:$HOME/go/bin:$HOME/bin:/usr/local/opt/gnu-tar/libexec/gnubin:$HOME/.cargo/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:$HOME/istio-1.9.4/bin:/opt/homebrew/opt/python/libexec/bin
+set -x PATH $ENCORE_INSTALL/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:$HOME/go/bin:$HOME/bin:/usr/local/opt/gnu-tar/libexec/gnubin:$HOME/.cargo/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:$HOME/istio-1.9.4/bin:/opt/homebrew/opt/python/libexec/bin
 
 
-if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; env SHELL=fish /home/linuxbrew/.linuxbrew/bin/brew shellenv | source; end
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]
+    env SHELL=fish /home/linuxbrew/.linuxbrew/bin/brew shellenv | source
+end
 
-if [ -f "/opt/homebrew/bin/brew" ]; env SHELL=fish /opt/homebrew/bin/brew shellenv | source; end
+if [ -f /opt/homebrew/bin/brew ]
+    env SHELL=fish /opt/homebrew/bin/brew shellenv | source
+end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jack/Development/google-cloud-sdk/path.fish.inc' ]; . '/Users/jack/Development/google-cloud-sdk/path.fish.inc'; end
+if [ -f '/Users/jack/Development/google-cloud-sdk/path.fish.inc' ]
+    . '/Users/jack/Development/google-cloud-sdk/path.fish.inc'
+end
