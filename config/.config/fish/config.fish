@@ -1,4 +1,4 @@
-
+set fish_greeting
 if [ -f "$HOME/.cargo/env" ]
     bass source "$HOME/.cargo/env"
 end
@@ -9,18 +9,13 @@ alias bazel="bazelisk"
 alias vim="nvim"
 export BROWSER=/home/jack/.local/bin/firefox
 
-#if status --is-interactive
-#    set BASE16_SHELL "$HOME/.config/base16-shell/"
-#    source "$BASE16_SHELL/profile_helper.fish"
-#end
-
 function drogo
     cd ~/go/src/github.com/lakahq/drogo
 end
 
 set -x CGO_CFLAGS_ALLOW -Xpreprocessor
 set -u GOROOT
-set -x GOPATH $HOME/go # :$HOME/Development/IAT/drogo/bazel-drogo/external:$HOME/go
+set -x GOPATH $HOME/go
 set -x EDITOR nvim
 set -x BAT_THEME TwoDark
 set -x GO111MODULE on
