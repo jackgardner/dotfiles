@@ -28,6 +28,7 @@ set -x GDK_SCALE 1
 set -x ENCORE_INSTALL ~/.encore
 set -x PATH $ENCORE_INSTALL/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:$HOME/go/bin:$HOME/bin:/usr/local/opt/gnu-tar/libexec/gnubin:$HOME/.cargo/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:$HOME/istio-1.9.4/bin:/opt/homebrew/opt/python/libexec/bin
 
+set --universal nvm_default_version latest
 
 if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]
     env SHELL=fish /home/linuxbrew/.linuxbrew/bin/brew shellenv | source
