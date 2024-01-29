@@ -2,7 +2,9 @@
 config/.config/fisher/github.com
 config/.config/helm
 config/.config/configstore
-# config/.config/fish/functions
+config/.config/fish/functions
+config/.config/fish/conf.d
+config/.config/fish/completions
 config/.config/fish/fish_variables
 config/.config/nvim/.netrwhist
 config/.config/insight-nodejs/insight-clinic.json
