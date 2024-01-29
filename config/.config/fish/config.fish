@@ -25,10 +25,7 @@ if type -q ip
 end
 set -x LIBGL_ALWAYS_INDIRECT 1
 set -x GDK_SCALE 1
-set -x ENCORE_INSTALL ~/.encore
-set -x PATH $ENCORE_INSTALL/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:$HOME/go/bin:$HOME/bin:/usr/local/opt/gnu-tar/libexec/gnubin:$HOME/.cargo/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:$HOME/istio-1.9.4/bin:/opt/homebrew/opt/python/libexec/bin
-
-set --universal nvm_default_version latest
+set -x PATH /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:$HOME/go/bin:$HOME/bin:/usr/local/opt/gnu-tar/libexec/gnubin:$HOME/.cargo/bin:/opt/homebrew/opt/python/libexec/bin
 
 if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]
     env SHELL=fish /home/linuxbrew/.linuxbrew/bin/brew shellenv | source
@@ -38,7 +35,13 @@ if [ -f /opt/homebrew/bin/brew ]
     env SHELL=fish /opt/homebrew/bin/brew shellenv | source
 end
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jack/Development/google-cloud-sdk/path.fish.inc' ]
-    . '/Users/jack/Development/google-cloud-sdk/path.fish.inc'
+if [ -f /Users/jack/Development/google-cloud-sdk/path.fish.inc ]
+    . /Users/jack/Development/google-cloud-sdk/path.fish.inc
+end
+
+bass source ~/.nvm/nvm.sh --no-use
+if [ -f '.nvmrc' ]
+    nvm use --silent
+else
+    nvm use --silent default
 end
