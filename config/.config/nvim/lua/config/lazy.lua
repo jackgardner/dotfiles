@@ -32,6 +32,8 @@ require("lazy").setup({
     notify = false,
     frequency = 86400,
   }, -- automatically check for plugin updates
+  install = { colorscheme = { "tokyonight", "habamax", "catppuccin" } },
+  checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins

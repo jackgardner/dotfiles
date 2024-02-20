@@ -1,6 +1,10 @@
+if vim.g.neovide then
+  vim.o.guifont = "Comic Code Ligatures:h16"
+end
+
 return {
   {
-    "ellisonleao/gruvbox.nvim"
+    "ellisonleao/gruvbox.nvim",
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -9,9 +13,9 @@ return {
     end,
   }, -- the opts function can also be used to change the default opts:
   {
-    'LazyVim/LazyVim',
+    "LazyVim/LazyVim",
     opts = {
-      colorscheme = 'gruvbox',
-    }
-  }
+      colorscheme = "catppuccin",
+    },
+  },
 }
