@@ -45,3 +45,5 @@ if [ -f '.nvmrc' ]
 else
     nvm use --silent default
 end
+
+env SHELL=fish zoxide init --cmd cd fish | source
