@@ -1,4 +1,7 @@
 tmux-gruvbox
 tmux-sensible
 tmux-better-mouse-mode
+minimal-tmux-status
+
+vim-tmux-navigator
 *.log
