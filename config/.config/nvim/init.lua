@@ -458,6 +458,7 @@ require('lazy').setup {
         --
         -- tsserver = {},
         --
+        golangci_lint_ls = {},
         tsserver = {
 
           single_file_support = true,
