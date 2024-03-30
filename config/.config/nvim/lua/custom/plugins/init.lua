@@ -2,27 +2,42 @@
 --  I promise not to create any merge conflicts in this directory :)
 
 vim.opt.tabstop = 2
-
+vim.opt.relativenumber = true
 --
 -- See the kickstart.nvim README for more information
 return {
-  'github/copilot.vim',
+  -- {
+  --   'brenton-leighton/multiple-cursors.nvim',
+  --   version = '*',
+  --   opts = {},
+  --   keys = {
+  --     { '<C-d>', '<Cmd>MultipleCursorsAddMatches<CR>', mode = { 'n', 'x' } },
+  --     { '<C-LeftMouse>', '<Cmd>MultipleCursorsMouseAddDelete<CR>', mode = { 'n', 'i' } },
+  --   },
+  -- },
   {
-    'nvim-neotest/neotest',
-    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-neotest/neotest-jest' },
+    'ellisonleao/gruvbox.nvim',
     config = function()
-      require('neotest').setup {
-        adapters = {
-          require 'neotest-jest' {
-            jestCommand = 'npm test --',
-            jestConfigFile = 'jest.config.js',
-            env = { CI = true },
-            cwd = function(path)
-              return vim.fn.getcwd()
-            end,
-          },
-        },
-      }
+      vim.cmd 'colorscheme gruvbox'
     end,
   },
+  'github/copilot.vim',
+  {
+    'nvim-treesitter/nvim-treesitter',
+    opts = {
+      ensure_installed = {
+        'bash',
+        'html',
+        'lua',
+        'tsx',
+        'typescript',
+        'http',
+      },
+    },
+  },
+  -- {
+  --   'nvim-neotest/neotest',
+  --   dependencies = { 'nvim-lua/plenary.nvim', 'nvim-neotest/neotest-jest' },
+  --   opts = { adapters = { 'neotest-jest' } },
+  -- },
 }

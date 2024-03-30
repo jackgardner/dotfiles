@@ -15,7 +15,7 @@ end
 -- For example, changing the color scheme:
 config.color_scheme = "Gruvbox Material (Gogh)"
 config.font = wezterm.font("ComicCodeLigatures Nerd Font")
--- config.font = wezterm.font("JetBrains Mono")
+-- config.font = wezterm.font("Hack")
 config.font_size = 14.0
 config.front_end = "WebGpu"
 config.tab_bar_at_bottom = true
