@@ -3,9 +3,62 @@
 
 vim.opt.tabstop = 2
 vim.opt.relativenumber = true
+
+vim.keymap.set('n', '<leader>n', ':bn<cr>')
+vim.keymap.set('n', '<leader>p', ':bp<cr>')
+vim.keymap.set('n', '<leader>x', ':bd<cr>')
+
 --
 -- See the kickstart.nvim README for more information
 return {
+  {
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
+    lazy = false,
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('nvim-tree').setup {}
+    end,
+    keys = {
+      { '<leader>e', '<Cmd>NvimTreeFindFileToggle<CR>', mode = 'n' },
+    },
+  },
+  {
+    'akinsho/bufferline.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('bufferline').setup {}
+    end,
+  },
+  {
+    'windwp/nvim-autopairs',
+    -- Optional dependency
+    dependencies = { 'hrsh7th/nvim-cmp' },
+    config = function()
+      require('nvim-autopairs').setup {}
+      -- If you want to automatically add `(` after selecting a function or method
+      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      local cmp = require 'cmp'
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end,
+  },
+  {
+    'vhyrro/luarocks.nvim',
+    priority = 1000,
+    config = true,
+  },
+  {
+    'rest-nvim/rest.nvim',
+    ft = 'http',
+    dependencies = { 'luarocks.nvim' },
+    config = function()
+      require('rest-nvim').setup()
+    end,
+    keys = {
+      { '<Leader>rr', '<Cmd>Rest run<CR>', mode = 'n' },
+      { '<Leader>rl', '<Cmd>Rest run last<CR>', mode = 'n' },
+    },
+  },
   -- {
   --   'brenton-leighton/multiple-cursors.nvim',
   --   version = '*',

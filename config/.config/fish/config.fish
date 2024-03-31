@@ -7,6 +7,7 @@ alias g="git"
 alias kc="kubectl"
 alias bazel="bazelisk"
 alias vim="nvim"
+alias lg="lazygit"
 export BROWSER=/home/jack/.local/bin/firefox
 
 function drogo
