@@ -12,6 +12,120 @@ vim.keymap.set('n', '<leader>x', ':bd<cr>')
 -- See the kickstart.nvim README for more information
 return {
   {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'vim-test/vim-test',
+      'nvim-neotest/nvim-nio',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-lua/plenary.nvim',
+      'nvim-neotest/neotest-jest',
+      'nvim-neotest/neotest-go',
+      'mfussenegger/nvim-dap',
+    },
+    config = function()
+      require('neotest').setup {
+        adapters = {
+          require 'neotest-go',
+          require 'neotest-jest',
+        },
+      }
+    end,
+    keys = {
+      {
+        '<leader>tf',
+        function()
+          require('neotest').run.run(vim.fn.expand '%')
+        end,
+        mode = 'n',
+        desc = 'Test whole file',
+      },
+      {
+        '<leader>tw',
+        function()
+          require('neotest').watch.toggle()
+        end,
+        mode = 'n',
+        desc = 'Test watch',
+      },
+      {
+        '<leader>tt',
+        function()
+          require('neotest').run.run()
+        end,
+        mode = 'n',
+        desc = 'Test nearest',
+      },
+      {
+        '<leader>tv',
+        function()
+          require('neotest').output_panel.toggle()
+        end,
+        mode = 'n',
+        desc = 'Test visit',
+      },
+    },
+  },
+  -- {
+  --   'vim-test/vim-test',
+  --   keys = {
+  --     { '<leader>tf', '<Cmd>TestFile<CR>', mode = 'n', desc = 'Test whole file' },
+  --     { '<leader>tn', '<Cmd>TestNearest<CR>', mode = 'n', desc = 'Test nearest' },
+  --     { '<leader>tl', '<Cmd>TestLast<CR>', mode = 'n', desc = 'Test last' },
+  --     { '<leader>ts', '<Cmd>TestSuite<CR>', mode = 'n', desc = 'Test suite' },
+  --     { '<leader>tv', '<Cmd>TestVisit<CR>', mode = 'n', desc = 'Test visit' },
+  --   },
+  --   config = function()
+  --     vim.g['test#strategy'] = 'neovim'
+  --   end,
+  -- },
+  {
+    'ray-x/go.nvim',
+    dependencies = { 'ray-x/guihua.lua' },
+    config = function()
+      require('go').setup()
+    end,
+    event = { 'CmdLineEnter' },
+    ft = { 'go', 'gomod' },
+    build = ":lua require('go.install').update_all_sync()",
+  },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    lazy = false,
+    config = function()
+      local harpoon = require 'harpoon'
+      harpoon:setup {}
+
+      local conf = require('telescope.config').values
+      local function toggle_telescope(harpoon_files)
+        local file_paths = {}
+        for _, item in ipairs(harpoon_files.items) do
+          table.insert(file_paths, item.value)
+        end
+
+        require('telescope.pickers')
+          .new({}, {
+            prompt_title = 'Harpoon',
+            finder = require('telescope.finders').new_table {
+              results = file_paths,
+            },
+            previewer = conf.file_previewer {},
+            sorter = conf.generic_sorter {},
+          })
+          :find()
+      end
+
+      vim.keymap.set('n', '<leader>a', function()
+        harpoon:list():append()
+      end)
+      vim.keymap.set('n', '<C-e>', function()
+        toggle_telescope(harpoon:list())
+      end)
+    end,
+  },
+  {
     'akinsho/toggleterm.nvim',
     config = function()
       require('toggleterm').setup {}
@@ -23,6 +137,7 @@ return {
         lazygit:toggle()
       end
     end,
+    lazy = false,
     keys = {
       { '<leader>lg', '<Cmd>lua _lazygit_toggle()<CR>', mode = 'n' },
     },
